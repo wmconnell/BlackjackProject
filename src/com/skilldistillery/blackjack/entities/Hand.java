@@ -5,7 +5,7 @@ import java.util.List;
 
 public abstract class Hand {
 
-	List<Card> hand = new ArrayList<>();
+	protected List<Card> hand = new ArrayList<>();
 	
 	Hand() {}
 	
@@ -17,9 +17,7 @@ public abstract class Hand {
 		
 	}
 	
-	public int getHandValue() {
-		return 0;
-	}
+	public abstract int getHandValue();
 
 
 	public List<Card> getHand() {
