@@ -3,20 +3,18 @@ package com.skilldistillery.blackjack.app;
 import java.util.Scanner;
 
 import com.skilldistillery.blackjack.entities.Dealer;
-import com.skilldistillery.blackjack.entities.Deck;
 import com.skilldistillery.blackjack.entities.Player;
 
 public class BlackjackApp {
 
-	Scanner sc = new Scanner(System.in);
-	Dealer dealer = new Dealer();
-	Player player = new Player();
-	Deck deck = new Deck();
+	private Scanner sc = new Scanner(System.in);
+	private Dealer dealer = new Dealer();
+	private Player player = new Player();
 
 	public static void main(String[] args) {
 		BlackjackApp app = new BlackjackApp();
 		app.run();
-
+		app.closeScanner();
 	}
 
 	public void run() {
@@ -28,11 +26,10 @@ public class BlackjackApp {
 
 			startMenu();
 
-				dealer.deal(player.getPlayerBlackJackHand());
-				dealer.deal(dealer.getDealerBlackJackHand());
-				dealer.deal(player.getPlayerBlackJackHand());
-				dealer.deal(dealer.getDealerBlackJackHand());
-				
+			dealer.deal(player.getPlayerBlackJackHand());
+			dealer.deal(dealer.getDealerBlackJackHand());
+			dealer.deal(player.getPlayerBlackJackHand());
+			dealer.deal(dealer.getDealerBlackJackHand());
 
 			System.out.println("Player\'s hand is: " + player.getPlayerBlackJackHand().toString());
 			System.out.println("Dealer\'s hand is: " + "(First card is upside down), "
@@ -42,23 +39,16 @@ public class BlackjackApp {
 
 				playerGameMenu();
 
-				if (player.getPlayerBlackJackHand().getHandValue() != 0 && player.getPlayerBlackJackHand().isBust() == false) {
+				if (player.getPlayerBlackJackHand().getHandValue() != 0
+						&& player.getPlayerBlackJackHand().isBust() == false) {
 					dealerGameMenu();
 				}
 			} else if (player.getPlayerBlackJackHand().getHandValue() == 21) {
-				System.out.println("Blackjack! The dealer will now reveal his cards: ");
-				System.out.println("Dealer\'s hand is: " + dealer.getDealerBlackJackHand().toString());
-				if (dealer.getDealerBlackJackHand().getHandValue() == 21) {
-					System.out.println("You both have blackjack! Push!!!");
-				} else {
-					System.out.println("Dealer does not have blackjack! You win!!!");
-					endGameMenu();
-				}
+				blackJackMenu();
 			} else {
 				System.out.println("You bust! You lose!!!");
 				endGameMenu();
 			}
-
 		}
 
 	}
@@ -72,6 +62,18 @@ public class BlackjackApp {
 		System.out.println("----- Dealer is dealing -----");
 		System.out.println();
 
+	}
+
+	public void blackJackMenu() {
+		System.out.println("Blackjack! The dealer will now reveal his cards: ");
+		System.out.println("Dealer\'s hand is: " + dealer.getDealerBlackJackHand().toString());
+		if (dealer.getDealerBlackJackHand().getHandValue() == 21) {
+			System.out.println("You both have blackjack! Push!!!");
+
+		} else {
+			System.out.println("Dealer does not have blackjack! You win!!!");
+		}
+		endGameMenu();
 	}
 
 	public void playerGameMenu() {
@@ -187,5 +189,9 @@ public class BlackjackApp {
 		default:
 			System.out.println("Please type Y or N");
 		}
+	}
+	
+	public void closeScanner() {
+		sc.close();
 	}
 }
