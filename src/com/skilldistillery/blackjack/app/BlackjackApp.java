@@ -1,6 +1,10 @@
 package com.skilldistillery.blackjack.app;
 
+import com.skilldistillery.blackjack.entities.Dealer;
+
 public class BlackjackApp {
+	
+	Dealer dealer = new Dealer();
 
 	public static void main(String[] args) {
 		BlackjackApp app = new BlackjackApp();
@@ -9,7 +13,7 @@ public class BlackjackApp {
 	}
 	
 	public void run() {
-		
+		dealer();
 	}
 	
 }

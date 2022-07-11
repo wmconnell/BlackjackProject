@@ -6,9 +6,8 @@ import java.util.List;
 
 public class Deck {
 
-	private List<Card> deckOfCards = new ArrayList<>(); 
+	private List<Card> deckOfCards = new ArrayList<>();
 
-	
 	public Deck() {
 		for (Suit suit : Suit.values()) {
 			for (Rank rank : Rank.values()) {
@@ -16,19 +15,29 @@ public class Deck {
 				deckOfCards.add(card);
 			}
 		}
-		
+
 	}
-	
+
 	public int checkDeckSize() {
 		return deckOfCards.size();
 	}
-	
+
 	public Card dealCard() {
 		Card card = deckOfCards.remove(0);
 		return card;
 	}
-	
+
 	public void shuffle() {
 		Collections.shuffle(deckOfCards);
 	}
+
+	public int cardsLeftInDeck() {
+		int cardsLeft = 0;
+		return cardsLeft;
+	}
+
+	public void dealCard(Hand hand) {
+
+	}
+
 }
